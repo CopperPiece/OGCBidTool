@@ -26,9 +26,12 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/Moncleared/OGCBidTool/master/OGCBidTool/publish/</InstallUrl>
+    <SupportUrl>https://github.com/Moncleared/OGCBidTool</SupportUrl>
+    <ErrorReportUrl>https://github.com/Moncleared/OGCBidTool</ErrorReportUrl>
     <TargetCulture>en</TargetCulture>
+    <ProductName>OGC Bid Utility</ProductName>
     <PublisherName>Moncs</PublisherName>
-    <MinimumRequiredVersion>1.1.0.2</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.3</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>3</ApplicationRevision>
