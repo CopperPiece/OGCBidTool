@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGCBidTool"
         mc:Ignorable="d"
-        Title="Original Gangsters Club - DKP Tool" Height="350" Width="525">
-    <Grid>
+        Title="Original Gangsters Club - DKP Tool" Height="350" Width="525" Icon="Resources/OGC.ico">
+    <Grid Margin="5">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="23" />
