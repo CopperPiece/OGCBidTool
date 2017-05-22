@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="OGCBidTool.exe" version="1.1.0.1" publicKeyToken="2439dbc8456163e8" language="en" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="OGCBidTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="OGCBidTool.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HtmlAgilityPack.dll" size="132608">
+      <assemblyIdentity name="HtmlAgilityPack" version="1.4.9.5" publicKeyToken="BD319B19EAF3B43A" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>0wRkMMxsmVD2JVWyS1z4euhLiiZXxjJ8Akk2nr5sNLE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OGCBidTool.exe" size="19440">
+      <assemblyIdentity name="OGCBidTool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>V/oE66iAZcMmVKz4Bj2MN+4fKtFUstlQFSqKJ5Y5gdA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="OGCBidTool.exe.config" size="1025">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vx1jsCibS3cm+XnJb3neuxWeqKeO4o2G2RX/nNOds9c=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-GAMING-\Cage9d9" issuerKeyHash="901b750c3e8c8d3e710d83094715b43af40c7c47" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>JwlCWiqifpay5hEJsivg7sqYap/ZoVwX6Whdpr5a6sY=</DigestValue></Reference></SignedInfo><SignatureValue>Sthrkp6kccmEqRPh1MxAO/oLHWxCcUn71x9HR51ZjXsw/hArvLlajo2uN7GnfJI7fH8Ao9rseU6rzV5RwyEvGZkwPU/OBPKB51Tu7wm2OQdMaCIXHLif0y3m/xQvnVGAKqj/21bgtqSswIQIkrM+CD1lZp720SVVQYufdyxbXac=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>7djfRkzDmdyZgxCJ7DGb2lxmV2sKZZmNPAy1XiFrtRUZvRMsV+vMTELwcE+GVYNhsD1JvaLbEc+w+7QSGkwnErx73mh2/81RRaAP9Set8BH5qEpmgGvlkPusl0NqTet3Z3/E9PiN7G9dexac6XsplxiHP0XDZV/Hv2iZPuSv8A0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="c6ea5abea65d68e9175ca1d99f6a98caeee02bb20911e6b2967ea22a5a420927" Description="" Url=""><as:assemblyIdentity name="OGCBidTool.exe" version="1.1.0.1" publicKeyToken="2439dbc8456163e8" language="en" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-GAMING-\Cage9d9</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>fF/TY2AmoAe829TkoAWbumj21COh4uMoOKy2Bqf2/3k=</DigestValue></Reference></SignedInfo><SignatureValue>056s54u4vwFfEFDOI4VW14tjZBw9q7KELJVEuEZSBYUDO2lWEpT6mdNBTzdTI4MLrpAwh/uJsX/YS5OeorBNhNI5qdOIx5feUqLs2X905bLD24wfOJ9P2QVn3Oo7CiwUfHk1fIRDvd3u2itSXFilNzoM7lmQm0Zaoxb6qqZ5gQ4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>7djfRkzDmdyZgxCJ7DGb2lxmV2sKZZmNPAy1XiFrtRUZvRMsV+vMTELwcE+GVYNhsD1JvaLbEc+w+7QSGkwnErx73mh2/81RRaAP9Set8BH5qEpmgGvlkPusl0NqTet3Z3/E9PiN7G9dexac6XsplxiHP0XDZV/Hv2iZPuSv8A0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQd9FWaDuyLrJHQXDYSqrdFTANBgkqhkiG9w0BAQsFADA5MTcwNQYDVQQDHi4ARABFAFMASwBUAE8AUAAtAEcAQQBNAEkATgBHAC0AXABDAGEAZwBlADkAZAA5MB4XDTE3MDUyMTIxMzEyMFoXDTE4MDUyMjAzMzEyMFowOTE3MDUGA1UEAx4uAEQARQBTAEsAVABPAFAALQBHAEEATQBJAE4ARwAtAFwAQwBhAGcAZQA5AGQAOTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA7djfRkzDmdyZgxCJ7DGb2lxmV2sKZZmNPAy1XiFrtRUZvRMsV+vMTELwcE+GVYNhsD1JvaLbEc+w+7QSGkwnErx73mh2/81RRaAP9Set8BH5qEpmgGvlkPusl0NqTet3Z3/E9PiN7G9dexac6XsplxiHP0XDZV/Hv2iZPuSv8A0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQA5mNvfXR+iZzvpLh4t8opU7HtBveNxGg47/EZOYU/H9UFNdUby65Trru+yhDdPhfa4eMQ/GeP5KUKvXEYWGDs/LSMZg8djFKxq8hTXDq7zNEQkw4qvWBxY5Qz1J2OwguORahXevaM13AUq/h8TRxIi51jTeHegUx/Fgb8TAq/C8w==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

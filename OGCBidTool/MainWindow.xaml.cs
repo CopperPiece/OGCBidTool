@@ -116,10 +116,11 @@ namespace OGCBidTool
 
         private void onChanged(object sender, FileSystemEventArgs e)
         {
+            string Line = string.Empty;
+
             try
             {
                 var fs = new FileStream(LOG_FILE_LOCATION, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                string Line;
                 int CurrentLine = 0;
                 using (StreamReader sr = new StreamReader(fs))
                 {
@@ -128,7 +129,7 @@ namespace OGCBidTool
                         CurrentLine++;
                         if (CurrentLine > LastLine)
                         {
-                            if (!FirstTime)
+                            if (!FirstTime && Line.Contains("'") )
                             {
                                 string vPlayerMessage = Line.Substring(Line.IndexOf("'")); vPlayerMessage = vPlayerMessage.Trim('\'');
                                 string[] vTokens = vPlayerMessage.Split(' ');
@@ -168,7 +169,7 @@ namespace OGCBidTool
             }
             catch(Exception ex)
             {
-                UpdateTextBox("Critical Error detected: "+ex);
+                UpdateTextBox("Critical Error detected: "+ Environment.NewLine + Line);
             }
         }
 

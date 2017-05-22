@@ -28,10 +28,10 @@
     <InstallUrl>https://raw.githubusercontent.com/Moncleared/OGCBidTool/master/OGCBidTool/publish/</InstallUrl>
     <TargetCulture>en</TargetCulture>
     <PublisherName>Moncs</PublisherName>
-    <MinimumRequiredVersion>1.1.0.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.1</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
