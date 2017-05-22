@@ -130,9 +130,34 @@ namespace OGCBidTool
                         {
                             if (!FirstTime)
                             {
-                                if (Line.ToLower().Contains("bid "))
+                                string vPlayerMessage = Line.Substring(Line.IndexOf("'")); vPlayerMessage = vPlayerMessage.Trim('\'');
+                                string[] vTokens = vPlayerMessage.Split(' ');
+                                int vBid = 0;
+                                if (vTokens != null && vTokens.Length > 0 && int.TryParse( vTokens[0], out vBid) )
                                 {
-                                    ParseBid(Line.ToLower());
+                                    if ( vBid >= 75 )
+                                    {
+                                        //Get Player Name
+                                        string noTimestamp = Line.Substring(Line.IndexOf("]") + 2);
+                                        string playerName = noTimestamp.Split(' ')[0];
+                                        if (playerName.Equals("you", StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            string vFileName = System.IO.Path.GetFileNameWithoutExtension(LOG_FILE_LOCATION);
+                                            playerName = vFileName.Split('_')[1];
+                                        }
+                                        playerName = char.ToUpper(playerName[0]) + playerName.Substring(1);
+
+                                        string playerBid = vBid.ToString();
+                                        var vTest = vGuildRoster.SingleOrDefault<MadeMan>(s => s.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase));
+                                        if (vTest == null)
+                                        {
+                                            UpdateTextBox(playerName + " " + playerBid + " (no dkp info available)");
+                                        }
+                                        else
+                                        {
+                                            UpdateTextBox(string.Format("{0} {1} (RANK={2}, RA={3}, DKP={4})", playerName, playerBid, vTest.Rank, vTest.RA, vTest.DKP));
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -147,26 +172,6 @@ namespace OGCBidTool
             }
         }
 
-        public void ParseBid(string bid)
-        {
-            string noTimestamp = bid.Substring(bid.IndexOf("]") + 2);
-            string playerName = noTimestamp.Split(' ')[0];
-            if ( playerName.Equals("you", StringComparison.OrdinalIgnoreCase) )
-            {
-                string vFileName = System.IO.Path.GetFileNameWithoutExtension(LOG_FILE_LOCATION);
-                playerName = vFileName.Split('_')[1];
-            }
-            playerName = char.ToUpper(playerName[0]) + playerName.Substring(1);
-            string playerBid = bid.Substring(bid.IndexOf("bid")); playerBid = playerBid.Remove(playerBid.Length - 1);
-            var vTest = vGuildRoster.SingleOrDefault<MadeMan>(s => s.Name.Equals(playerName,StringComparison.OrdinalIgnoreCase));
-            if ( vTest == null )
-            {
-                UpdateTextBox(playerName + " " + playerBid + " (no dkp info available)");
-            } else
-            {
-                UpdateTextBox(string.Format("{0} {1} (RANK={2}, RA={3}, DKP={4})",playerName, playerBid, vTest.Rank, vTest.RA, vTest.DKP));
-            }          
-        }
         public delegate void UpdateTextCallback(string message);
         private void UpdateTextBox(string input)
         {
