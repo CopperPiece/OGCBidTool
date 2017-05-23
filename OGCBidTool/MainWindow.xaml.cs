@@ -36,9 +36,10 @@ namespace OGCBidTool
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.LogFile)) LogFileTextBox.Text = Properties.Settings.Default.LogFile;
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             LOG_FILE_LOCATION = LogFileTextBox.Text;
+            vGuildRoster.Clear();
             await LogProcessing();
             await GetDKPInfo();
         }

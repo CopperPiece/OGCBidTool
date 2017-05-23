@@ -4,29 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OGCBidTool"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"        
         mc:Ignorable="d"
         Title="Original Gangsters Club - DKP Tool" Height="350" Width="525" Icon="Resources/OGC.ico">
-    <Grid Margin="5">
+    <Grid Margin="16">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="23" />
-            <RowDefinition Height="23" />
+            <RowDefinition Height="AUTO" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
         </Grid.RowDefinitions>
-        
-        <TextBox Grid.Row="0" x:Name="LogFileTextBox" Height="23" 
-                 VerticalAlignment="Top" Text="Enter Log Path Here"/>
-        <Button Grid.Row="0" x:Name="Browse" Content="Browse" HorizontalAlignment="Right" Click="BrowseButton_Click" />
 
-        <Button Grid.Row="1" x:Name="StartButton" Height="23" 
-                Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        
-        <Button Grid.Row="1" x:Name="ClearButton" Height="23" 
-                Content="Clear" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Click="ClearButton_Click"/>
-        
-        <TextBox Grid.Row="2" FontSize="16" x:Name="BidTextBox" 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="AUTO" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="Log File: " />
+            <TextBox Grid.Column="1" x:Name="LogFileTextBox" Text="Enter Log Path Here"/>
+            <Button Grid.Column="2" x:Name="Browse" Content="Browse" Click="BrowseButton_Click" />
+        </Grid>
+
+
+        <TextBox Grid.Row="1" FontSize="16" x:Name="BidTextBox" 
                  VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
-                 IsReadOnly="True"/>
-     </Grid>
+                 IsReadOnly="True" />
+
+        <Button Grid.Row="2" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Click="StartButton_Click"/>
+        <Button Grid.Row="2" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Click="ClearButton_Click"/>
+    </Grid>
 </Window>
