@@ -5,7 +5,6 @@ using OGCBidTool.Services;
 using System.Threading.Tasks;
 using OGCBidTool.Models;
 using GalaSoft.MvvmLight.Messaging;
-using Loggly;
 
 namespace OGCBidTool.ViewModel
 {
@@ -86,6 +85,40 @@ namespace OGCBidTool.ViewModel
                     fOutputConsole = value;
                     RaisePropertyChanged("OutputConsole");
                 }
+            }
+        }
+
+        private RelayCommand fBrowseCommand;
+        public RelayCommand BrowseCommand
+        {
+            get
+            {
+                if (fBrowseCommand == null)
+                {
+                    fBrowseCommand = new RelayCommand(this.PopBrowseDialog);
+                }
+                return fBrowseCommand;
+            }
+        }
+
+        private void PopBrowseDialog()
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+               LogFile = filename;
             }
         }
 

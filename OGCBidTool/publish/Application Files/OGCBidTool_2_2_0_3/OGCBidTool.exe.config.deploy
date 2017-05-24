@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="OGCBidTool.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+      <section name="loggly" type="Loggly.Config.LogglyAppConfig, Loggly.Config"/>
+    </configSections>
+  <loggly xmlns="Loggly" applicationName="OGC DKP Tool" customerToken="e471136b-84a6-4d60-8838-82b45e5b005c" isEnabled="true" throwExceptions="false">
+    <transport logTransport="Https" endpointHostname="logs-01.loggly.com" endpointPort="443"/>
+
+    <search account="your_loggly_account" username="a_loggly_username" password="myLittleP0ny!"/>
+
+    <tags>
+      <simple>
+        <tag value="wpf"/>
+      </simple>
+      <complex>
+        <tag type="Loggly.HostnameTag" formatter="host-{0}"/>
+        <tag type="Loggly.ApplicationNameTag" formatter="application-{0}"/>
+        <tag type="Loggly.OperatingSystemVersionTag" formatter="os-{0}"/>
+        <tag type="Loggly.OperatingSystemPlatformTag" formatter="platform-{0}"/>
+      </complex>
+    </tags>    
+  </loggly>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+    </startup>
+    <userSettings>
+        <OGCBidTool.Properties.Settings>
+            <setting name="LogFile" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="DkpInfo" serializeAs="String">
+                <value />
+            </setting>
+        </OGCBidTool.Properties.Settings>
+    </userSettings>
+</configuration>

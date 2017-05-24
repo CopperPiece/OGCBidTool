@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock VerticalAlignment="Center" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="Log File: " />
             <TextBox Grid.Column="1" x:Name="LogFileTextBox" Text="{Binding LogFile, Mode=TwoWay}"/>
-            <Button Grid.Column="2" x:Name="Browse" Content="Browse" Click="BrowseButton_Click" />
+            <Button Grid.Column="2" x:Name="Browse" Content="Browse" Command="{Binding BrowseCommand}" />
         </Grid>
 
 
