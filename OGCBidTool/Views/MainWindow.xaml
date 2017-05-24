@@ -1,0 +1,47 @@
+﻿<Window x:Class="OGCBidTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OGCBidTool"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"        
+        mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="{Binding Title}" Height="350" Width="525" Icon="../Resources/OGC.ico">
+    <Grid Margin="16">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="AUTO" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="Log File: " />
+            <TextBox Grid.Column="1" x:Name="LogFileTextBox" Text="{Binding LogFile, Mode=TwoWay}"/>
+            <Button Grid.Column="2" x:Name="Browse" Content="Browse" Click="BrowseButton_Click" />
+        </Grid>
+
+
+        <TextBox Grid.Row="1" FontSize="16" x:Name="BidTextBox" 
+                 VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
+                 IsReadOnly="True"
+                 Text="{Binding OutputConsole}"/>
+
+        <Button Grid.Row="2" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}"/>
+        <Button Grid.Row="2" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}"/>
+    </Grid>
+</Window>
