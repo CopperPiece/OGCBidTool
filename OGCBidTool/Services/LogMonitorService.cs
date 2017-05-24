@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Loggly;
 using OGCBidTool.Models;
 using System;
 using System.IO;
@@ -9,6 +10,7 @@ namespace OGCBidTool.Services
 {
     public class LogMonitorService
     {
+        private ILogglyClient fLoggly = new LogglyClient();
         private int LastLine = 0;
         private bool FirstTime = true;
         private FileSystemWatcher fFileWatcher = new FileSystemWatcher();
@@ -36,6 +38,9 @@ namespace OGCBidTool.Services
             else
             {
                 Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "I don't think you entered a valid Log File, try again?" });
+                var LogEvent = new LogglyEvent();
+                LogEvent.Data.Add("Monitor Log", "{0}: Invalid Logfile=", DateTime.Now, pLogFilePath);
+                fLoggly.Log(LogEvent);
             }
         }
 
@@ -94,6 +99,9 @@ namespace OGCBidTool.Services
             catch (Exception ex)
             {
                 Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Critical Error detected: " + Environment.NewLine + Line });
+                var LogEvent = new LogglyEvent();
+                LogEvent.Data.Add("Monitor Log Catch All", "{0}:{1}", DateTime.Now, ex);
+                fLoggly.Log(LogEvent);
             }
         }
     }

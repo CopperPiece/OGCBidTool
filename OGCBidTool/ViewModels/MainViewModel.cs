@@ -5,6 +5,7 @@ using OGCBidTool.Services;
 using System.Threading.Tasks;
 using OGCBidTool.Models;
 using GalaSoft.MvvmLight.Messaging;
+using Loggly;
 
 namespace OGCBidTool.ViewModel
 {

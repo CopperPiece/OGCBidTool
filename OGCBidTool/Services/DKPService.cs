@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using HtmlAgilityPack;
+using Loggly;
 using OGCBidTool.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace OGCBidTool.Services
 {
     class DKPService
     {
+        private ILogglyClient fLoggly = new LogglyClient();
         private static DKPService fInstance;
 
         public static DKPService Instance {
@@ -57,6 +59,9 @@ namespace OGCBidTool.Services
                 catch (Exception)
                 {
                     Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Was NOT able to get the latest DKP, using last known data on file" });
+                    var LogEvent = new LogglyEvent();
+                    LogEvent.Data.Add("Fetching DKP", "{0}: Error fetching latest DKP, site must be down", DateTime.Now );
+                    fLoggly.Log(LogEvent);
                     html = Properties.Settings.Default.DkpInfo;
                 }
                 var htmlDoc = new HtmlDocument();
@@ -83,6 +88,9 @@ namespace OGCBidTool.Services
             {
                 //Typically bad practice to catch all, but fuck it
                 Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Critical Error in DKPService" });
+                var LogEvent = new LogglyEvent();
+                LogEvent.Data.Add("Catch All DKP", "{0}:{1}", DateTime.Now, e);
+                fLoggly.Log(LogEvent);
             }
         }
     }

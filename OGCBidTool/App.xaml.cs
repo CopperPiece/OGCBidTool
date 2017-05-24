@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Loggly;
+using System;
 using System.Windows;
 
 namespace OGCBidTool
@@ -13,5 +9,12 @@ namespace OGCBidTool
     /// </summary>
     public partial class App : Application
     {
+        private ILogglyClient fLoggly = new LogglyClient();
+        public App()
+        {
+            var LogEvent = new LogglyEvent();
+            LogEvent.Data.Add("App Start detected", "{0}: Welcome new user!", DateTime.Now);
+            fLoggly.Log(LogEvent);
+        }
     }
 }
