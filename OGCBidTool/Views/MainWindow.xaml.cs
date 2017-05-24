@@ -35,5 +35,10 @@ namespace OGCBidTool
                 LogFileTextBox.Text = filename;
             }
         }
+
+        private void BidTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            BidTextBox.ScrollToEnd();
+        }
     }
 }

@@ -39,7 +39,7 @@
                  VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
                  IsReadOnly="True"
-                 Text="{Binding OutputConsole}"/>
+                 Text="{Binding OutputConsole}" TextChanged="BidTextBox_TextChanged"/>
 
         <Button Grid.Row="2" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}"/>
         <Button Grid.Row="2" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}"/>
