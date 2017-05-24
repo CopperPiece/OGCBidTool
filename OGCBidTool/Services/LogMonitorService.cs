@@ -20,6 +20,10 @@ namespace OGCBidTool.Services
             Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Validating Log File" });
             if (File.Exists(pLogFilePath))
             {
+                var LogEvent = new LogglyEvent();
+                LogEvent.Data.Add("Monitor Log", "{0}: valid Logfile={1}", DateTime.Now, pLogFilePath);
+                fLoggly.Log(LogEvent);
+
                 Properties.Settings.Default.LogFile = pLogFilePath;
                 Properties.Settings.Default.Save();
                 var DirectoryPath = Path.GetDirectoryName(pLogFilePath);
@@ -39,7 +43,7 @@ namespace OGCBidTool.Services
             {
                 Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "I don't think you entered a valid Log File, try again?" });
                 var LogEvent = new LogglyEvent();
-                LogEvent.Data.Add("Monitor Log", "{0}: Invalid Logfile=", DateTime.Now, pLogFilePath);
+                LogEvent.Data.Add("Monitor Log", "{0}: Invalid Logfile={1}", DateTime.Now, pLogFilePath);
                 fLoggly.Log(LogEvent);
             }
         }
