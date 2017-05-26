@@ -28,15 +28,17 @@ namespace OGCBidTool.Services
                 var DirectoryPath = Path.GetDirectoryName(pLogFilePath);
                 var FileName = Path.GetFileName(pLogFilePath);
 
+
+                Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Starting Initial Log Parse" });
+                onChanged(this, new FileSystemEventArgs(WatcherChangeTypes.All, DirectoryPath, FileName));
+                Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Finished. Monitoring now..." });
+
                 fFileWatcher.Path = DirectoryPath;
                 fFileWatcher.Filter = FileName;
                 fFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
                 fFileWatcher.Changed += new FileSystemEventHandler(onChanged);
                 fFileWatcher.EnableRaisingEvents = true;
 
-                Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Starting Initial Log Parse" });
-                onChanged(this, new FileSystemEventArgs(WatcherChangeTypes.All, DirectoryPath, FileName));
-                Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "Finished. Monitoring now..." });
             }
             else
             {
