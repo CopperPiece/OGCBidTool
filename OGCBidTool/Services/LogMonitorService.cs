@@ -4,16 +4,15 @@ using OGCBidTool.Models;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace OGCBidTool.Services
 {
     public class LogMonitorService
     {
         private ILogglyClient fLoggly = new LogglyClient();
-        private int LastLine = 0;
         private bool FirstTime = true;
         private FileSystemWatcher fFileWatcher = new FileSystemWatcher();
+        private long Position = 0;
 
         public void MonitorLog(string pLogFilePath)
         {
@@ -54,49 +53,50 @@ namespace OGCBidTool.Services
             try
             {
                 var fs = new FileStream(pFileSystemEventArgs.FullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                int CurrentLine = 0;
+                fs.Position = Position;
                 using (StreamReader sr = new StreamReader(fs))
                 {
                     while ((Line = sr.ReadLine()) != null)
                     {
-                        CurrentLine++;
-                        if (CurrentLine > LastLine)
+                        if (!FirstTime && Line.Contains("'"))
                         {
-                            if (!FirstTime && Line.Contains("'"))
+                            string vPlayerMessage = Line.Substring(Line.IndexOf("'")); vPlayerMessage = vPlayerMessage.Trim('\'');
+                            string[] vTokens = vPlayerMessage.Split(' ');
+                            int vBid = 0;
+                            if (vTokens != null && vTokens.Length > 0 && int.TryParse(vTokens[0], out vBid))
                             {
-                                string vPlayerMessage = Line.Substring(Line.IndexOf("'")); vPlayerMessage = vPlayerMessage.Trim('\'');
-                                string[] vTokens = vPlayerMessage.Split(' ');
-                                int vBid = 0;
-                                if (vTokens != null && vTokens.Length > 0 && int.TryParse(vTokens[0], out vBid))
+                                if (vBid >= 75)
                                 {
-                                    if (vBid >= 75)
+                                    //Get Player Name
+                                    string noTimestamp = Line.Substring(Line.IndexOf("]") + 2);
+                                    string playerName = noTimestamp.Split(' ')[0];
+                                    if (playerName.Equals("you", StringComparison.OrdinalIgnoreCase))
                                     {
-                                        //Get Player Name
-                                        string noTimestamp = Line.Substring(Line.IndexOf("]") + 2);
-                                        string playerName = noTimestamp.Split(' ')[0];
-                                        if (playerName.Equals("you", StringComparison.OrdinalIgnoreCase))
-                                        {
-                                            string vFileName = Path.GetFileNameWithoutExtension(pFileSystemEventArgs.FullPath);
-                                            playerName = vFileName.Split('_')[1];
-                                        }
-                                        playerName = char.ToUpper(playerName[0]) + playerName.Substring(1);
+                                        string vFileName = Path.GetFileNameWithoutExtension(pFileSystemEventArgs.FullPath);
+                                        playerName = vFileName.Split('_')[1];
+                                    }
+                                   //Bidding for PALT?
+                                    if ( noTimestamp.ToLower().Contains("palt") && vTokens.Length>2 )
+                                    {
+                                        playerName = vTokens[2];
+                                    }
 
-                                        string playerBid = vBid.ToString();
-                                        var vPlayerDKP = DKPService.Instance.GuildRoster.SingleOrDefault<MadeMan>(s => s.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase));
-                                        if (vPlayerDKP == null)
-                                        {
-                                            Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = "playerName + " + playerBid + "(no dkp info available)" });
-                                        }
-                                        else
-                                        {
-                                            Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = string.Format("{0} {1} (RANK = {2}, RA = {3}, DKP = {4})", playerName, playerBid, vPlayerDKP.Rank, vPlayerDKP.RA, vPlayerDKP.DKP) });
-                                        }
+                                    playerName = char.ToUpper(playerName[0]) + playerName.Substring(1);
+                                    string playerBid = vBid.ToString();
+                                    var vPlayerDKP = DKPService.Instance.GuildRoster.SingleOrDefault<MadeMan>(s => s.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase));
+                                    if (vPlayerDKP == null)
+                                    {
+                                        Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = string.Format("{0} {1} (no dkp info available)", playerName, vBid) });
+                                    }
+                                    else
+                                    {
+                                        Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = string.Format("{0} {1} (RANK = {2}, RA = {3}, DKP = {4})", playerName, playerBid, vPlayerDKP.Rank, vPlayerDKP.RA, vPlayerDKP.DKP) });
                                     }
                                 }
                             }
                         }
                     }
-                    LastLine = CurrentLine;
+                    Position = fs.Position;
                     FirstTime = false;
                 }
             }

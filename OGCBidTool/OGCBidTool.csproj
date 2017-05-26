@@ -31,11 +31,11 @@
     <TargetCulture>en</TargetCulture>
     <ProductName>OGC Bid Utility</ProductName>
     <PublisherName>Moncs</PublisherName>
-    <MinimumRequiredVersion>2.2.0.3</MinimumRequiredVersion>
+    <MinimumRequiredVersion>2.2.1.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>2.2.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
