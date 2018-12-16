@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://raw.githubusercontent.com/Moncleared/OGCBidTool/master/OGCBidTool/publish/</InstallUrl>
+    <InstallUrl>https://copperpiece.github.io/OGCBidTool/publish/</InstallUrl>
     <SupportUrl>https://github.com/Moncleared/OGCBidTool</SupportUrl>
     <ErrorReportUrl>https://github.com/Moncleared/OGCBidTool</ErrorReportUrl>
     <TargetCulture>en</TargetCulture>
