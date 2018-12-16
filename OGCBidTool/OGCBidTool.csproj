@@ -70,7 +70,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\OGC.ico</ApplicationIcon>
@@ -150,6 +150,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\GenericMessage.cs" />
+    <Compile Include="Models\Roller.cs" />
+    <Compile Include="Models\RollMessage.cs" />
     <Compile Include="Services\DKPService.cs" />
     <Compile Include="Services\LogMonitorService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

@@ -37,7 +37,7 @@ namespace OGCBidTool.Services
         {
             fGuildRoster.Clear();
             string html = string.Empty;
-            string url = @"http://modestman.club/dkp";
+            string url = @"http://originalgangster.club/dkp";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.GZip;
@@ -78,7 +78,8 @@ namespace OGCBidTool.Services
                             Name = player.ChildNodes[3].InnerText,
                             Rank = player.ChildNodes[5].InnerText,
                             DKP = player.ChildNodes[7].InnerText,
-                            RA = player.ChildNodes[9].InnerText,
+                            RA30 = player.ChildNodes[9].InnerText,
+                            RA60 = player.ChildNodes[11].InnerText,
                         };
                         fGuildRoster.Add(vMadeMan);
                     }

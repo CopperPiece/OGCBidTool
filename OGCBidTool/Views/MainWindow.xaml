@@ -14,12 +14,13 @@
         FontFamily="{DynamicResource MaterialDesignFont}"        
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="{Binding Title}" Height="350" Width="525" Icon="../Resources/OGC.ico">
+        Title="{Binding Title}" Height="600" Width="800" Icon="../Resources/OGC.ico">
     <Grid Margin="16">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
 
@@ -34,14 +35,55 @@
             <Button Grid.Column="2" x:Name="Browse" Content="Browse" Command="{Binding BrowseCommand}" />
         </Grid>
 
+        <TabControl Grid.Row="1" TabStripPlacement="Left">
+<!--            <TabItem Header="Current"> -->
+                <ListView Margin="10" Name="lsCurrent" ItemsSource="{Binding RollersView, Mode=OneWay}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Name}">
+                            <GridViewColumnHeader Content="Roller"
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="Name"/>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding AdjustedValue}">
+                            <GridViewColumnHeader Content="AdjustedValue" 
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="AdjustedValue"/>
+                            </GridViewColumn>
+                            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Value}">
+                            <GridViewColumnHeader Content="Value" 
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="Value"/>
+                            </GridViewColumn>
+                            <GridViewColumn Width="80" DisplayMemberBinding="{Binding RollMax}">
+                            <GridViewColumnHeader Content="RollMax" 
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="RollMax"/>
+                            </GridViewColumn>
+                            <GridViewColumn Width="100" DisplayMemberBinding="{Binding RA60}">
+                            <GridViewColumnHeader Content="60-day RA"
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="RA60"/>
+                            </GridViewColumn>
+                            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Rank}">
+                            <GridViewColumnHeader Content="Rank" 
+                                                  Command="{Binding SortCommand}"
+                                                  CommandParameter="Rank"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+<!--            </TabItem> -->
+        </TabControl>
 
-        <TextBox Grid.Row="1" FontSize="16" x:Name="BidTextBox" 
-                 VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
-                 IsReadOnly="True"
-                 Text="{Binding OutputConsole}" TextChanged="BidTextBox_TextChanged"/>
 
-        <Button Grid.Row="2" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}"/>
-        <Button Grid.Row="2" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}"/>
+        <TextBox Grid.Row="2" FontSize="16" x:Name="BidTextBox" 
+            VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
+            IsReadOnly="True"
+            Text="{Binding OutputConsole}" TextChanged="BidTextBox_TextChanged" Margin="0,0,0,0"/>
+
+        <Button Grid.Row="3" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}" Margin="0,1.5"/>
+        <Button Grid.Row="3" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}" Margin="0,1.5"/>
     </Grid>
 </Window>
