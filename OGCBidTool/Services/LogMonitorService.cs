@@ -83,7 +83,7 @@ namespace OGCBidTool.Services
                                 }
                                 else
                                 {
-                                    vRoller.RA60 = UInt32.Parse(vPlayerDKP.RA60.Substring(0,vPlayerDKP.RA60.IndexOf("%")));
+                                    vRoller.RA60 = vPlayerDKP.RA60;
                                     vRoller.Rank = vPlayerDKP.Rank;
                                     vRoller.AdjustedValue = vRoller.RA60 * 10 * vRoller.Value / vRoller.RollMax;
 

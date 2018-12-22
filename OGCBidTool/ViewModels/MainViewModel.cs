@@ -337,7 +337,7 @@ namespace OGCBidTool.ViewModel
                 }
                 else
                 {
-                    vRoller.RA60 = UInt32.Parse(vPlayerDKP.RA60.Substring(0, vPlayerDKP.RA60.IndexOf("%")));
+                    vRoller.RA60 = vPlayerDKP.RA60;
                     vRoller.Rank = vPlayerDKP.Rank;
                     vRoller.AdjustedValue = vRoller.RA60 * 10 * vRoller.Value / vRoller.RollMax;
                     Messenger.Default.Send<GenericMessage>(new GenericMessage() { Message = string.Format("Updated DKP related information for roller {0}", vRoller.Name) });
