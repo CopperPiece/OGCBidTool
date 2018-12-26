@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows;
 
 namespace OGCBidTool.ViewModel
 {
@@ -82,7 +83,6 @@ namespace OGCBidTool.ViewModel
             fRollersView.SortDescriptions.Clear();
             fRollersView.SortDescriptions.Add(
                                      new SortDescription(_sortColumn, _sortDirection));
-
         }
 
         private CollectionViewSource fRollersView;
@@ -293,9 +293,40 @@ namespace OGCBidTool.ViewModel
             }
         }
 
+        private RelayCommand fCopyCommand;
+        public RelayCommand CopyCommand
+        {
+            get
+            {
+                if (fCopyCommand == null)
+                {
+                    fCopyCommand = new RelayCommand(CopyToClipboard);
+                }
+                return fCopyCommand;
+            }
+        }
+
         private void ClearRolls()
         {
             Messenger.Default.Send<RollMessage>(new RollMessage() { Action = "clear" });
+        }
+
+        private void CopyToClipboard()
+        {
+            string sText = "/rsa ROLL RESULTS: ";
+            int n = 1;
+            foreach(var vRoller in fRollers.OrderByDescending(x => x.AdjustedValue))
+            {
+                if(vRoller.IsSelected)
+                {
+                    if (n != 1)
+                    {
+                        sText += " -|||- ";
+                    }
+                    sText += string.Format("{0}:  {1} - adjusted roll value: {2}. (60-day RA: {3})", n++, vRoller.Name, vRoller.AdjustedValue, vRoller.RA60);
+                }
+            }
+            Clipboard.SetText(sText);
         }
 
         private void ClearRollers()

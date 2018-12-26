@@ -74,6 +74,7 @@ namespace OGCBidTool.Services
                                 vRoller.Name = playerName;
                                 vRoller.RollMax = UInt32.Parse(vRollTokens[21].Remove(vRollTokens[21].Length - 1));
                                 vRoller.Value = UInt32.Parse(vRollTokens[29].Remove(vRollTokens[29].Length - 1));
+                                vRoller.IsSelected = false;
 
                                 if (vPlayerDKP == null)
                                 {

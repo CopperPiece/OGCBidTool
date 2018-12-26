@@ -14,5 +14,6 @@ namespace OGCBidTool.Models
         public UInt32 RollMax { get; set; }
         public UInt32 RA60 { get; set; }
         public string Rank { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

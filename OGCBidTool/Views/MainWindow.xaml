@@ -14,10 +14,10 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="{Binding Title}" Height="600" Width="800" Icon="../Resources/OGC.ico">
     <Grid Margin="16">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
             <RowDefinition Height="150" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
@@ -36,6 +36,11 @@
         <TabControl Grid.Row="1" TabStripPlacement="Left">
 <!--            <TabItem Header="Current"> -->
                 <ListView Margin="10" Name="lsCurrent" ItemsSource="{Binding RollersView, Mode=OneWay}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="120" DisplayMemberBinding="{Binding Name}">
@@ -74,14 +79,15 @@
 <!--            </TabItem> -->
         </TabControl>
 
+        <Button Grid.Row="2" x:Name="CopyButton" Content="Copy to Clipboard" HorizontalAlignment="Right" Command="{Binding CopyCommand}" Margin="0,1.5"/>
 
-        <TextBox Grid.Row="2" FontSize="16" x:Name="BidTextBox" 
+        <TextBox Grid.Row="3" FontSize="16" x:Name="BidTextBox" 
             VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
             IsReadOnly="True"
             Text="{Binding OutputConsole}" TextChanged="BidTextBox_TextChanged" Margin="0,0,0,0"/>
 
-        <Button Grid.Row="3" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}" Margin="0,1.5"/>
-        <Button Grid.Row="3" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}" Margin="0,1.5"/>
+        <Button Grid.Row="4" x:Name="StartButton" Content="Start" HorizontalAlignment="Right"  Command="{Binding MonitorLogCommand}" Margin="0,1.5"/>
+        <Button Grid.Row="4" x:Name="ClearButton" Content="Clear" HorizontalAlignment="Left" Command="{Binding ClearCommand}" Margin="0,1.5"/>
     </Grid>
 </Window>
