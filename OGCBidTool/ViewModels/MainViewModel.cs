@@ -262,7 +262,7 @@ namespace OGCBidTool.ViewModel
             return Task.Run(() =>
             {
                 AppendText("Fetching the latest DKP information...");
-                DKPService.Instance.GetDKPInformation();
+                DKPService.Instance.GetDKPInformationJson();
                 if (DKPService.Instance.GuildRoster.Count == 0)
                 {
                     AppendText("Was not able to get the latest DKP information....");
@@ -323,7 +323,7 @@ namespace OGCBidTool.ViewModel
                     {
                         sText += " -|||- ";
                     }
-                    sText += string.Format("{0}:  {1} - adjusted roll value: {2}. (60-day RA: {3})", n++, vRoller.Name, vRoller.AdjustedValue, vRoller.RA60);
+                    sText += string.Format("{0}:  {1} - adjusted roll value: {2} (60-day RA: {3}).", n++, vRoller.Name, vRoller.AdjustedValue, vRoller.RA60);
                 }
             }
             Clipboard.SetText(sText);
