@@ -51,7 +51,7 @@ namespace OGCBidTool.Services
                 {
                     while ((Line = sr.ReadLine()) != null)
                     {
-                        if (!FirstTime)
+                        if ((!FirstTime) && (Line.Length > 27))
                         {
                             if (Line.Substring(27).StartsWith("**A Magic Die is rolled"))
                             {
